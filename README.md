@@ -8,23 +8,47 @@
 
 > system for shortening links in seconds.
 
-## Install
+## Requirements
 
-```sh
-yarn install
-yarn prisma:push
+- Node.js 20+
+- Yarn
+- Docker and Docker Compose (optional)
+
+## Setup
+
+### Environment Variables
+
+Add the following environment variables to your `.env` file:
+
+```bash
+  cp .env.example .env
+```
+
+- `DATABASE_URL`: The URL of the database to use. Defaults to `postgresql://postgres:postgres@localhost:5432/short-link?schema=public`
+- `JWT_SECRET`: The secret to use for JWT tokens.
+- `JWT_ACCESS_EXPIRES`: The expiration time for JWT tokens. Defaults to `7d`
+
+OBS: Make sure to update the `DATABASE_URL` and `JWT_SECRET` in the `.env` file before starting the application.
+
+### Install
+
+if you are using Docker, run the following command:
+
+```bash
+  docker-compose up -d
+```
+
+or run the following command
+
+```bash
+  yarn install
+  yarn prisma:push
 ```
 
 ## Usage
 
 ```sh
-yarn start:dev
-```
-
-## Run tests
-
-```sh
-yarn test
+  yarn start:dev
 ```
 
 ## Features
