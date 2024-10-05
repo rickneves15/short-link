@@ -14,9 +14,25 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
+  id       String  @id @default(uuid())
+  email    String  @unique
   password String
+  Links    Links[]
 
   @@map("users")
+}
+
+model Links {
+  id        String    @id @default(uuid())
+  originUrl String
+  code      String
+  shortUrl  String
+  clicks    Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id])
+
+  @@map("links")
 }
